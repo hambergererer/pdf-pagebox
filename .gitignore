@@ -1,0 +1,26 @@
+# ---- 依赖：装得上，不用进仓库（41 MB 的二进制）
+vendor/
+_build_tools/
+
+# ---- 打包产物
+build/
+dist/
+发布/
+*.spec
+_mei_tmp/
+
+# ---- 你自己的数据：打开的 PDF 记录、工作区、笔记、备份
+data/
+_备份/
+自检报告.txt
+
+# ---- Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ---- 系统杂物
+Thumbs.db
+desktop.ini
+.DS_Store
