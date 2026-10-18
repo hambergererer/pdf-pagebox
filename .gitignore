@@ -24,3 +24,6 @@ venv/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# ---- 输入法/程序蹭出来的日志
+*.log
