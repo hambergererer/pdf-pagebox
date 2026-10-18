@@ -2292,6 +2292,7 @@ class App(tk.Tk):
         self.mode = "doc"
         if self.doc_path and self.pages:
             self._relayout()
+            self._sync_page_label()
         else:
             self.show_empty()
 

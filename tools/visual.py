@@ -155,6 +155,17 @@ def main():
     x, y = win.winfo_rootx(), win.winfo_rooty()
     w, h = win.winfo_width(), win.winfo_height()
 
+    # 主界面（README 用的那张）
+    win.show_doc_view()
+    win.set_tool("select")
+    if win._crop_rect:
+        win._cancel_crop()
+    for _ in range(50):
+        win.update()
+        time.sleep(0.02)
+    ImageGrab.grab(bbox=(x, y, x + w, y + h)).save(
+        os.path.join(ROOT, "示例界面.png"))
+
     # 浅色主题来一张
     win.set_theme("light")
     for _ in range(50):
@@ -191,12 +202,26 @@ def main():
     ImageGrab.grab(bbox=(x, y, x + w, y + h)).save(
         os.path.join(ROOT, "示例-设置.png"))
 
+    # 关掉设置窗口，免得它挡住后面那张
+    for child in win.winfo_children():
+        if child.winfo_class() == "Toplevel":
+            try:
+                child.destroy()
+            except Exception:
+                pass
+    for _ in range(20):
+        win.update()
+        time.sleep(0.02)
+
     # 欢迎页：关掉文件之后中间那块「最近打开」
     if win.doc_path:
         win.close_path(win.doc_path)
-    out = os.path.join(ROOT, "tests", "_ui.png")
-    ImageGrab.grab(bbox=(x, y, x + w, y + h)).save(out)
-    print("saved:", out, (w, h))
+    for _ in range(40):
+        win.update()
+        time.sleep(0.02)
+    ImageGrab.grab(bbox=(x, y, x + w, y + h)).save(
+        os.path.join(ROOT, "示例-最近打开.png"))
+    print("saved screenshots")
 
     win.destroy()
     return 0
